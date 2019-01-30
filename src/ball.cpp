@@ -1,52 +1,33 @@
 #include "ball.h"
 #include "main.h"
 
-Ball::Ball(float x, float y, color_t color) {
+Ball::Ball(float x, float y,float speedY,float speedX, color_t color) {
     this->position = glm::vec3(x, y, 0);
     this->rotation = 0;
-    speed = 1;
+    // speed = 0.01;
+    this->speedY = 0;
+    this->speedX = 0;
+
+    // speed = -0.01;
+
     // Our vertices. Three consecutive floats give a 3D vertex; Three consecutive vertices give a triangle.
     // A cube has 6 faces with 2 triangles each, so this makes 6*2=12 triangles, and 12*3 vertices
     static const GLfloat vertex_buffer_data[] = {
-        -1.0f,-1.0f,-1.0f, // triangle 1 : begin
-        -1.0f,-1.0f, 1.0f,
-        -1.0f, 1.0f, 1.0f, // triangle 1 : end
-        1.0f, 1.0f,-1.0f, // triangle 2 : begin
-        -1.0f,-1.0f,-1.0f,
-        -1.0f, 1.0f,-1.0f, // triangle 2 : end
-        1.0f,-1.0f, 1.0f,
-        -1.0f,-1.0f,-1.0f,
-        1.0f,-1.0f,-1.0f,
-        1.0f, 1.0f,-1.0f,
-        1.0f,-1.0f,-1.0f,
-        -1.0f,-1.0f,-1.0f,
-        -1.0f,-1.0f,-1.0f,
-        -1.0f, 1.0f, 1.0f,
-        -1.0f, 1.0f,-1.0f,
-        1.0f,-1.0f, 1.0f,
-        -1.0f,-1.0f, 1.0f,
-        -1.0f,-1.0f,-1.0f,
-        -1.0f, 1.0f, 1.0f,
-        -1.0f,-1.0f, 1.0f,
-        1.0f,-1.0f, 1.0f,
-        1.0f, 1.0f, 1.0f,
-        1.0f,-1.0f,-1.0f,
-        1.0f, 1.0f,-1.0f,
-        1.0f,-1.0f,-1.0f,
-        1.0f, 1.0f, 1.0f,
-        1.0f,-1.0f, 1.0f,
-        1.0f, 1.0f, 1.0f,
-        1.0f, 1.0f,-1.0f,
-        -1.0f, 1.0f,-1.0f,
-        1.0f, 1.0f, 1.0f,
-        -1.0f, 1.0f,-1.0f,
-        -1.0f, 1.0f, 1.0f,
-        1.0f, 1.0f, 1.0f,
-        -1.0f, 1.0f, 1.0f,
-        1.0f,-1.0f, 1.0f
+        -0.25f,0.5f,0.0f,
+        0.0f,0.75f,0.0f,
+        0.25f,0.5f,0.0f,
+         -0.25f,0.0f,0.0f,
+          -0.25f,0.5f,0.0f,
+          0.0f,0.25f,0.0f,
+          0.0f,0.25f,0.0f,
+          0.25f,0.5f,0.0f,
+          0.25f,0.0f,0.0f,
+
+
+
     };
 
-    this->object = create3DObject(GL_TRIANGLES, 12*3, vertex_buffer_data, color, GL_FILL);
+    this->object = create3DObject(GL_TRIANGLES, 3*3, vertex_buffer_data, color, GL_FILL);
 }
 
 void Ball::draw(glm::mat4 VP) {
@@ -65,9 +46,33 @@ void Ball::set_position(float x, float y) {
     this->position = glm::vec3(x, y, 0);
 }
 
-void Ball::tick() {
-    this->rotation += speed;
-    // this->position.x -= speed;
-    // this->position.y -= speed;
+void Ball::tick(int flag) {
+    if(flag!=1)
+     {
+        if(this->speedY<0)
+            this->speedY=0;
+        if(this->speedY>0)
+        {
+            this->speedY-=0.1633;
+            this->position.x += this->speedX;
+            xEye = this->position.x;
+            this->position.y += this->speedY;
+        }
+        else
+        {
+            this->speedY+=0.1633;
+            this->position.x += this->speedX;
+            xEye = this->position.x;
+
+            this->position.y -= this->speedY;
+        }
+     }
+    else
+    {
+        this->speedX =0;
+        this->position.y -= 0;
+    }
 }
+
+
 

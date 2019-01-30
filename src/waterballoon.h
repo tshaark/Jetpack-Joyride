@@ -1,23 +1,22 @@
 #include "main.h"
 
-#ifndef BALL_H
-#define BALL_H
+#ifndef WATERBALLOON_H
+#define WATERBALLOON_H
 
 
-class Ball {
+class Waterballoon {
 public:
-    Ball() {}
-    Ball(float x, float y,float speedY,float speedX, color_t color);
+    Waterballoon() {}
+    Waterballoon(float x, float y,color_t color);
     glm::vec3 position;
     float rotation;
     void draw(glm::mat4 VP);
     void set_position(float x, float y);
-    void tick(int flag);
-    // void tick1();
+    void tick();
     double speedX;
     double speedY;
 private:
     VAO *object;
 };
 
-#endif // BALL_H
+#endif 

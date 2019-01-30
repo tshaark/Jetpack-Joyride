@@ -1,11 +1,14 @@
-Graphics Boilerplate Code
+JETPACK JOYRIDE
 =========================
 
-This is boilerplate code for the assignments which might be helpful.
+This is a mini adaption of the game jetpack joyride coded on CPP and openGL.
+On top left corner a player can see his score and lives left on top right corner.
+Use cursor keys to move left-right, space to fly using the jetpack, z to shoot water balloons.
+HAVE FUN! ENJOY!
 
 
-License
+CODED BY-
 -------
-The MIT License https://meghprkh.mit-license.org/
+SARTHAK SINGH
+IIIT-HYDERABAD
 
-Copyright &copy; 2018 Megh Parikh <meghprkh@gmail.com>

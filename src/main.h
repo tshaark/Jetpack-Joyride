@@ -9,6 +9,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#define GLM_ENABLE_EXPERIMENTAL 
 #define GLM_FORCE_RADIANS
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
@@ -19,6 +20,8 @@ struct color_t {
     int g;
     int b;
 };
+
+
 
 // nonedit.cpp
 GLFWwindow *initGLFW(int width, int height);
@@ -74,12 +77,24 @@ struct bounding_box_t {
 bool detect_collision(bounding_box_t a, bounding_box_t b);
 
 extern float screen_zoom, screen_center_x, screen_center_y;
+extern float xEye;
 void reset_screen();
 
 // ---- Colors ----
 extern const color_t COLOR_RED;
 extern const color_t COLOR_GREEN;
 extern const color_t COLOR_BLACK;
+extern const color_t COLOR_GOLD;
+extern const color_t COLOR_PINK;
+extern const color_t COLOR_GRAY;
+extern const color_t COLOR_AQUA;
+extern const color_t COLOR_DEEPSKYBLUE;
+extern const color_t COLOR_NEONGREEN;
+extern const color_t COLOR_BLUE;
+extern const color_t COLOR_WOOD;
+extern const color_t COLOR_PINKRED;
+
+
 extern const color_t COLOR_BACKGROUND;
 
 #endif
